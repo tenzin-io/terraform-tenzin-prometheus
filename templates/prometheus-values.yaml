@@ -92,3 +92,16 @@ prometheusOperator:
     enabled: false
   tls:
     enabled: false
+
+prometheus:
+  prometheusSpec:
+    externalLabels:
+      cluster: ${kubernetes_cluster_name}
+    retention: ${metrics_retention_duration}
+    scrapeInterval: ${metrics_scrape_interval}
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: ${prometheus_volume_size} 

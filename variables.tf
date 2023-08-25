@@ -22,3 +22,27 @@ variable "alert_receiver_password" {
   sensitive   = true
   description = "Password to use with the alert receiver API"
 }
+
+variable "metrics_retention_duration" {
+  default     = "10d"
+  type        = string
+  description = "The collected metrics will be available for this duration."
+}
+
+variable "metrics_scrape_interval" {
+  default     = "30s"
+  type        = string
+  description = "The frequency at which to collect metrics."
+}
+
+variable "prometheus_volume_size" {
+  default     = "10Gi"
+  type        = string
+  description = "The volume size for Prometheus persistent volume."
+}
+
+variable "kubernetes_cluster_name" {
+  default     = "kubernetes"
+  type        = string
+  description = "Add a label to the metrics identify the cluster name."
+}
