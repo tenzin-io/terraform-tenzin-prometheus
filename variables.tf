@@ -46,3 +46,14 @@ variable "kubernetes_cluster_name" {
   type        = string
   description = "Add a label to the metrics identify the cluster name."
 }
+
+variable "thanos_ingress_host" {
+  default     = ""
+  type        = string
+  description = "The Thanos sidecar hostname place on ingress."
+}
+
+variable "certificate_issuer_name" {
+  type        = string
+  description = "The cert-manager certificate issuer name."
+}

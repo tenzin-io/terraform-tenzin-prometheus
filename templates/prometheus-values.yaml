@@ -94,12 +94,33 @@ prometheusOperator:
     enabled: false
 
 prometheus:
+
+  %{~ if thanos_ingress_host != "" ~}
+  thanosIngress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: ${certificate_issuer_name}
+      nginx.ingress.kubernetes.io/proxy-body-size: 50m
+      nginx.ingress.kubernetes.io/backend-protocol: GRPC
+    hosts:
+      - ${thanos_ingress_host}
+    paths:
+      - /
+    pathType: Prefix
+    tls:
+      - hosts:
+          - ${thanos_ingress_host}
+        secretName: thanos-sidecar-tls-secret
+  %{~ endif ~}
+
   prometheusSpec:
     externalLabels:
       cluster: ${kubernetes_cluster_name}
     retention: ${metrics_retention_duration}
     scrapeInterval: ${metrics_scrape_interval}
     thanos:
+      image: docker.io/bitnami/thanos:0.32.1
+      version: 0.32.1
     storageSpec:
       volumeClaimTemplate:
         spec:

@@ -19,6 +19,8 @@ resource "helm_release" "prometheus" {
       metrics_retention_duration = var.metrics_retention_duration
       metrics_scrape_interval    = var.metrics_scrape_interval
       kubernetes_cluster_name    = var.kubernetes_cluster_name
+      thanos_ingress_host        = var.thanos_ingress_host
+      certificate_issuer_name    = var.certificate_issuer_name
     })
   ]
 }
