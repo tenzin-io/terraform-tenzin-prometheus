@@ -99,6 +99,7 @@ prometheus:
       cluster: ${kubernetes_cluster_name}
     retention: ${metrics_retention_duration}
     scrapeInterval: ${metrics_scrape_interval}
+    thanos:
     storageSpec:
       volumeClaimTemplate:
         spec:
