@@ -98,6 +98,7 @@ prometheus:
   %{~ if thanos_ingress_host != "" ~}
   thanosIngress:
     enabled: true
+    ingressClassName: nginx
     annotations:
       cert-manager.io/cluster-issuer: ${certificate_issuer_name}
       nginx.ingress.kubernetes.io/proxy-body-size: 50m
